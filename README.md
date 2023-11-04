@@ -5,3 +5,5 @@ A tool to help students keep track of their daily mood, add comments about their
 - Tkinter
 - Matplotlib
 - Pillow (PIL)
+# Notes
+? Potential to be an extention for chrome ? 
