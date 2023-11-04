@@ -5,5 +5,7 @@
 - [x] Edit and commit changes to readme.me file
 - [x] Explore related repositories
 - [x] https://github.com/SatwikMahajan/Mood_Journal
-- [ ]  test repository
-- [ ]  report on any issues and documenting how to make it work
+- [ ] https://github.com/cnnmon/coffeelings
+- [ ] https://github.com/elandrum/Global-Wellness
+- [x] test repositories
+- [ ] report on any issues and documenting how to make it work
