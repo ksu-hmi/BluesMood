@@ -48,7 +48,7 @@ def save_entry():
 root = Tk()
 root.title("Mood Journal")
 root.geometry("450x600")
-img=Image.open("ph.jpg")
+img=Image.open("MCS Header Logo Blue and White.jpg")
 img=img.resize((400,100))
 ph=ImageTk.PhotoImage(img)
 image_label = Label(root,image=ph,)
