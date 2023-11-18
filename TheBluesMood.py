@@ -32,7 +32,7 @@ def open_journal():
 def visualize():
     mood_count = Counter(Moods)
     plt.pie(mood_count.values(), labels=mood_count.keys(),autopct="%2.1f%%")
-    plt.title("Mood Distribution Chart")
+    plt.title("Mood Summary")
     plt.show()
 
 def save_entry():
@@ -42,7 +42,7 @@ def save_entry():
     with open("mood_journal.txt", "a") as file:
         file.write(f"Date: {current_date}\nMood: {mood}\nNote: {note}\n\n")
     suggest(mood)
-    msg.showinfo(title="Entry Saved", message="Entry Saved Successfully").pack()
+    msg.showinfo(title="Mood Documented", message="Mood Documented Successfully").pack()
     
 
 root = Tk()
@@ -54,16 +54,16 @@ ph=ImageTk.PhotoImage(img)
 image_label = Label(root,image=ph,)
 image_label.pack(pady=10,anchor=N)
 Label(root, text="How Are You Feeling Today ?", font="Roboto 16",bg="aqua").pack(pady=10)
-options = ['Happy', 'Angry', 'Sad', 'Excited']
+options = ['Happy', 'Upset', 'Sad', 'Excited', 'Neutral', 'Sick', 'Lonely']
 moods = StringVar()
 dropdown = OptionMenu(root, moods, *options)
 dropdown.pack(pady=10)
-note_label = Label(root, text="Add a Note - ",font="Roboto 16")
+note_label = Label(root, text="Please explain why you are feeling this way? ",font="Roboto 16")
 note_label.pack()
 note_entry = Text(root, height=5, width=30)
 note_entry.pack(pady=10)
-Button(root, text="Save Entry", command=save_entry,fg="green").pack(pady=5)
-Button(root, text="Click for Mood Distribution Stats",command=visualize).pack(pady=5)
+Button(root, text="Save My Mood", command=save_entry,fg="green").pack(pady=5)
+Button(root, text="Click Here for your Mood Summary",command=visualize).pack(pady=5)
 Button(root, text="Open Mood Journal ", command=open_journal,fg="blue").pack()
 Label(root, text="Suggested Activities - ", font="Roboto 16",bg="chartreuse").pack(pady=10)
 activity_suggestion = Text(root, height=5, width=50)
