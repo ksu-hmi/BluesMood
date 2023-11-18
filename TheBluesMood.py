@@ -23,7 +23,15 @@ def load_previous_moods():
                     mood = line.strip().split(": ")[1]
                     Moods.append(mood)
     except : pass
-
+        
+def open_admin():
+    note = note_entry.get("1.0", "end-1c")
+    current_date = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+    with open("mood_journal.txt", "a") as file:
+        file.write(f"Date: {current_date}\nNote: {note}\n\n")
+    suggest(note)
+    msg.showinfo(title="Message Shared", message="Message Shared Successfully").pack()
+    
 def open_journal():
     try:
         os.system("open mood_journal.txt") 
@@ -65,6 +73,7 @@ note_entry.pack(pady=10)
 Button(root, text="Save My Mood", command=save_entry,fg="green").pack(pady=5)
 Button(root, text="Click Here for your Mood Summary",command=visualize).pack(pady=5)
 Button(root, text="Open Mood Journal ", command=open_journal,fg="blue").pack()
+Button(root, text="Share with your Administrators", command=open_admin, fg="red").pack()
 Label(root, text="Suggested Activities - ", font="Roboto 16",bg="chartreuse").pack(pady=10)
 activity_suggestion = Text(root, height=5, width=50)
 activity_suggestion.pack()
@@ -73,7 +82,10 @@ mood_activities = {
     'Happy': ["Watch a comedy movie", "Call a friend", "Try a new recipe and cook a special meal"],
     'Angry': ["Try deep breathing exercises", "Engage in a hobby", "Listen to calming music or sounds of nature"],
     'Sad': ["Listen to soothing music", "Write in a journal", "Practice mindfulness"],
-    'Excited': ["Try a new adventure, like hiking or skydiving", "Learn a new skill or hobby you've been curious about"]
+    'Excited': ["Try a new adventure, like hiking or skydiving", "Learn a new skill or hobby you've been curious about"],
+    'Neutral': ["Exercise for 10 minutes", "Perform an act of kindness", "Read a good book"],
+    'Sick': ["Ask your teacher to let you see the nurse"],
+    'Lonely': ["Smile", "Join a club or sport", "Ask your teacher to let you speak with a counselor"],
 }
 Moods = []
 load_previous_moods() 
