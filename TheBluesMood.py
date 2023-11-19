@@ -1,3 +1,4 @@
+import webbrowser
 from tkinter import *
 import tkinter.messagebox as msg
 import matplotlib.pyplot as plt
@@ -5,6 +6,8 @@ from collections import Counter
 from PIL import ImageTk, Image
 from datetime import datetime
 import os 
+from bs4 import BeautifulSoup
+import html
 
 def suggest(mood):
     activity_suggestion.config(state=NORMAL)
@@ -26,7 +29,8 @@ def load_previous_moods():
     except : pass
         
 def email_admin():
-    open('send_email.py', 'r')
+    open("Joke.html",'r')
+
 
 def open_admin():
     note = note_entry.get("1.0", "end-1c")
@@ -46,6 +50,9 @@ def visualize():
     plt.pie(mood_count.values(), labels=mood_count.keys(),autopct="%2.1f%%")
     plt.title("Mood Summary")
     plt.show()
+
+def makeme_laugh():
+    webbrowser.open_new_tab('Joke.html')        
 
 def save_entry():
     mood = moods.get()
@@ -77,7 +84,8 @@ note_entry.pack(pady=10)
 Button(root, text="Save My Mood", command=save_entry,fg="green").pack(pady=5)
 Button(root, text="Click Here for your Mood Summary",command=visualize).pack(pady=5)
 Button(root, text="Open Mood Journal ", command=open_journal,fg="blue").pack()
-Button(root, text="Share with your Administrators", command=email_admin, fg="red").pack()
+Button(root, text="Share with your Administrators", command=open_admin, fg="red").pack()
+Button(root, text="Make Me Laugh", command = makeme_laugh, fg = "purple").pack()
 Label(root, text="Suggested Activities - ", font="Roboto 16",bg="chartreuse").pack(pady=10)
 activity_suggestion = Text(root, height=5, width=50)
 activity_suggestion.pack()
