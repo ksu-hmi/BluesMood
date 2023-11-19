@@ -85,7 +85,7 @@ mood_activities = {
     'Excited': ["Try a new adventure, like hiking or skydiving", "Learn a new skill or hobby you've been curious about"],
     'Neutral': ["Exercise for 10 minutes", "Perform an act of kindness", "Read a good book"],
     'Sick': ["Ask your teacher to let you see the nurse"],
-    'Lonely': ["Smile", "Join a club or sport", "Ask your teacher to let you speak with a counselor"],
+    'Lonely': ["Try to Smile", "Join a club or sport", "Ask your teacher to let you speak with a counselor"],
 }
 Moods = []
 load_previous_moods() 
