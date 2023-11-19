@@ -5,6 +5,7 @@ from collections import Counter
 from PIL import ImageTk, Image
 from datetime import datetime
 import os 
+
 def suggest(mood):
     activity_suggestion.config(state=NORMAL)
     activity_suggestion.delete("1.0", END)
@@ -24,6 +25,9 @@ def load_previous_moods():
                     Moods.append(mood)
     except : pass
         
+def email_admin():
+    open('send_email.py', 'r')
+
 def open_admin():
     note = note_entry.get("1.0", "end-1c")
     current_date = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
@@ -73,7 +77,7 @@ note_entry.pack(pady=10)
 Button(root, text="Save My Mood", command=save_entry,fg="green").pack(pady=5)
 Button(root, text="Click Here for your Mood Summary",command=visualize).pack(pady=5)
 Button(root, text="Open Mood Journal ", command=open_journal,fg="blue").pack()
-Button(root, text="Share with your Administrators", command=open_admin, fg="red").pack()
+Button(root, text="Share with your Administrators", command=email_admin, fg="red").pack()
 Label(root, text="Suggested Activities - ", font="Roboto 16",bg="chartreuse").pack(pady=10)
 activity_suggestion = Text(root, height=5, width=50)
 activity_suggestion.pack()
