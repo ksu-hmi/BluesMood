@@ -30,7 +30,7 @@ def open_admin():
     with open("mood_journal.txt", "a") as file:
         file.write(f"Date: {current_date}\nNote: {note}\n\n")
     suggest(note)
-    msg.showinfo(title="Message Shared", message="Message Shared Successfully").pack()
+    msg.showinfo(title="Message Shared", message="Your Message Has Been Shared")
     
 def open_journal():
     try:
