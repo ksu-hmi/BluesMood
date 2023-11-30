@@ -1,30 +1,27 @@
-from tkinter import*
-import os 
-from email.message import EmailMessage
-import ssl
+import os
 import smtplib
+from email.message import EmailMessage
+from dotenv import load_dotenv
+from pathlib import Path
 
-root = Tk()
-note_entry = Text(root, height=5, width=30)
-note_entry.pack(pady=10)
+load_dotenv()
 
-def email():
-    email_sender = lala
-    email_password =fala
-    email_receiver = lafala
+email_address = os.getenv('EMAIL_ADDRESS')
+email_password = os.getenv('EMAIL_PASSWORD')
+to = os.getenv('EMAIL_ADDRESS')
+subject = "TheBluesMood"
+message = input()
 
-    subject = 'Hey, I have something to tell you!'
-    note = note_entry.get("1.0", "end-1c")
-    body = note_entry
 
-    em = EmailMessage()
-    em['From'] = email_sender
-    em['To'] = email_receiver
-    em['Subject'] = subject 
-    em.set_content(body)
+def send_email(to, subject, message): 
+    msg = EmailMessage()
+    msg['Subject'] = subject
+    msg['From'] = email_address
+    msg['To'] = to
+    msg.set_content(message)
 
-    ssl.create_default_context()
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+        smtp.login(email_address, email_password)
+        smtp.send_message(msg)
 
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
-        smtp.login(email_sender, email_password)
-        smtp.sendmail(email_sender, email_receiver, em.as_string())
+send_email(to, subject, message)
