@@ -39,12 +39,12 @@ def email_admin():
 
     load_dotenv()
 
+    note = note_entry.get("1.0", "end-1c")
     email_address = os.getenv('EMAIL_ADDRESS')
     email_password = os.getenv('EMAIL_PASSWORD')
     to = os.getenv('EMAIL_ADDRESS')
     subject = "TheBluesMood"
-    message = "Hey, can I please talk you you?"
-
+    message = note
 
     def send_email(to, subject, message): 
         msg = EmailMessage()
