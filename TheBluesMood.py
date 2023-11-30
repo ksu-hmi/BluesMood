@@ -29,7 +29,35 @@ def load_previous_moods():
     except : pass
         
 def email_admin():
-    open("Joke.html",'r')
+    import os
+    import smtplib
+    from email.message import EmailMessage
+    from dotenv import load_dotenv
+    from pathlib import Path
+
+    load_dotenv()
+
+    email_address = os.getenv('EMAIL_ADDRESS')
+    email_password = os.getenv('EMAIL_PASSWORD')
+    to = os.getenv('EMAIL_ADDRESS')
+    subject = "TheBluesMood"
+    message = "Hey, can I please talk you you?"
+
+
+    def send_email(to, subject, message): 
+        msg = EmailMessage()
+        msg['Subject'] = subject
+        msg['From'] = email_address
+        msg['To'] = to
+        msg.set_content(message)
+
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+            smtp.login(email_address, email_password)
+            smtp.send_message(msg)
+    msg.showinfo(title="Message Shared", message="Your Message Has Been Shared")
+
+    return send_email(to, subject, message)
+    
 
 
 def open_admin():
@@ -84,7 +112,7 @@ note_entry.pack(pady=10)
 Button(root, text="Save My Mood", command=save_entry,fg="green").pack(pady=5)
 Button(root, text="Click Here for your Mood Summary",command=visualize).pack(pady=5)
 Button(root, text="Open Mood Journal ", command=open_journal,fg="blue").pack()
-Button(root, text="Share with your Administrators", command=open_admin, fg="red").pack()
+Button(root, text="Share with your Administrators", command=email_admin, fg="red").pack()
 Button(root, text="Make Me Laugh", command = makeme_laugh, fg = "purple").pack()
 Label(root, text="Suggested Activities - ", font="Roboto 16",bg="chartreuse").pack(pady=10)
 activity_suggestion = Text(root, height=5, width=50)
