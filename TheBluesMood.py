@@ -102,7 +102,7 @@ def save_entry():
     
 
 root = Tk()
-root.title("Mood Journal")
+root.title("Blue's Mood")
 root.geometry("450x600")
 img=Image.open("MCS Header Logo Blue and White.jpg")
 img=img.resize((400,100))
